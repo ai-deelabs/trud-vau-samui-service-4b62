@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ทรัด โว สมุย เซอร์วิส — บริการรถรับส่งบนเกาะสมุย</title>
+<meta name="description" content="บริการรถตู้รับส่งบนเกาะสมุย ปลอดภัย สะดวกสบาย ราคาเป็นธรรม จองได้ตลอด 24 ชั่วโมง">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@0.460.0"></script>
+<style>
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --pearl:    #F5F6F8;
+  --platinum: #B8BFC7;
+  --charcoal: #2E3A47;
+  --charcoal-deep: #1C2730;
+  --aqua:     #00C2D4;
+  --aqua-dim: #009BAB;
+  --white:    #FFFFFF;
+  --text-light: #F5F6F8;
+  --text-dark:  #2E3A47;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'IBM Plex Sans Thai', 'Sukhumvit Set', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-dark);
+  background: var(--pearl);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+}
+
+/* English text class — letter-spacing only on English */
+.en-only { font-family: 'IBM Plex Sans', sans-serif; }
+[lang="en"] body { font-family: 'IBM Plex Sans', sans-serif; }
+
+img { width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; background: none; font: inherit; }
+
+/* ── TYPOGRAPHY SCALE ── */
+.display {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 10vw, 7rem);
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.display-th {
+  font-family: 'IBM Plex Sans Thai', 'Sukhumvit Set', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 8vw, 5.5rem);
+  line-height: 1.35;
+}
+h2 {
+  font-size: clamp(1.6rem, 5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.5;
+}
+h3 {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.6;
+}
+p { line-height: 1.85; }
+
+.pull-quote {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+.pull-quote-th {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  line-height: 1.7;
+}
+
+/* ── NAV ── */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  background: transparent;
+  transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+}
+.nav.scrolled {
+  background: var(--charcoal-deep);
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.25);
+}
+.nav__logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav__logo-main {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+.nav__logo-sub {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--aqua);
+  margin-top: 2px;
+}
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav__links {
+  display: none;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+}
+.nav__links a {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.82);
+  padding: 0.6rem 0;
+  transition: color 0.25s;
+  line-height: 1.8;
+}
+.nav__links a:hover { color: var(--aqua); }
+
+/* Lang switcher */
+.lang-sw {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255,255,255,0.75);
+  font-size: 0.78rem;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: color 0.25s;
+  padding: 0.45rem 0.6rem;
+}
+.lang-sw:hover { color: var(--aqua); }
+.lang-sw svg { flex-shrink: 0; }
+
+/* Hamburger */
+.nav__burger {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+  cursor: pointer;
+}
+.nav__burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav__burger.open span:nth-child(2) { opacity: 0; }
+.nav__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile menu */
+.nav__mobile-menu {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--charcoal-deep);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+.nav__mobile-menu.open { transform: translateX(0); }
+.nav__mobile-menu a {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--pearl);
+  line-height: 2;
+  transition: color 0.25s;
+}
+.nav__mobile-menu a:hover { color: var(--aqua); }
+
+@media (min-width: 768px) {
+  .nav__links { display: flex; }
+  .nav__burger, .nav__mobile-menu { display: none; }
+  .nav { padding: 1.5rem 3rem; }
+  .nav.scrolled { padding: 0.9rem 3rem; }
+}
+
+/* ── HERO BAND (dark) ── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  background: var(--charcoal-deep);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1645440939214-62ef60ed0d43?w=1600&h=900&fit=crop');
+  background-size: cover;
+  background-position: center 30%;
+  transform-origin: center;
+  animation: heroZoom 12s ease-out forwards;
+  will-change: transform;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.08); }
+  to   { transform: scale(1); }
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(28,39,48,0.55) 0%,
+    rgba(28,39,48,0.3) 35%,
+    rgba(28,39,48,0.82) 75%,
+    rgba(28,39,48,0.98) 100%
+  );
+}
+
+/* Van SVG silhouette (decorative, bleeds into next section) */
+.hero__van-silhouette {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  line-height: 0;
+}
+.hero__van-silhouette svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 4;
+  padding: 7rem 1.5rem 9rem;
+  max-width: 900px;
+}
+
+.hero__kicker {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--aqua);
+  margin-bottom: 1.2rem;
+}
+
+.hero__headline {
+  color: var(--pearl);
+  margin-bottom: 1.5rem;
+  white-space: pre-line;
+}
+[lang="en"] .hero__headline {
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.05em;
+  line-height: 1.05;
+  white-space: normal;
+}
+
+.hero__sub {
+  color: rgba(245,246,248,0.75);
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  line-height: 1.9;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--aqua);
+  color: var(--charcoal-deep);
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+  line-height: 1.8;
+  min-height: 52px;
+}
+.btn-primary:hover {
+  background: #00dff5;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0,194,212,0.35);
+}
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  color: var(--pearl);
+  border: 1.5px solid rgba(245,246,248,0.4);
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+  line-height: 1.8;
+  min-height: 52px;
+}
+.btn-outline:hover {
+  border-color: var(--aqua);
+  color: var(--aqua);
+  background: rgba(0,194,212,0.06);
+}
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .hero__content { padding: 10rem 4rem 11rem; }
+}
+
+/* ── SECTION HELPERS ── */
+.band-light { background: var(--pearl); }
+.band-dark  { background: var(--charcoal); }
+.band-deep  { background: var(--charcoal-deep); }
+.band-aqua  { background: linear-gradient(135deg, var(--aqua-dim), var(--aqua) 60%, #00e5fa); }
+
+section { position: relative; }
+
+.section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+@media (min-width: 768px) {
+  .section-inner { padding: 7rem 3rem; }
+}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s ease-out, transform 0.65s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--aqua);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* ── VAN DIVIDER (between hero and services) ── */
+
+/* ── BAND 2: SERVICES (light) ── */
+.services { background: var(--pearl); }
+
+.services__grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 3.5rem;
+}
+
+.service-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid rgba(46,58,71,0.12);
+  padding: 2rem 0;
+  transition: background 0.25s;
+}
+.service-row:last-child { border-bottom: 1px solid rgba(46,58,71,0.12); }
+.service-row:hover { background: rgba(0,194,212,0.04); }
+
+.service-row__num {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--aqua);
+  margin-bottom: 0.5rem;
+}
+.service-row__icon {
+  width: 44px; height: 44px;
+  background: var(--charcoal);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  color: var(--aqua);
+}
+.service-row__body { flex: 1; }
+.service-row__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--charcoal-deep);
+  margin-bottom: 0.4rem;
+  line-height: 1.6;
+}
+.service-row__desc {
+  color: #5a6878;
+  font-size: 0.92rem;
+  line-height: 1.85;
+}
+
+@media (min-width: 768px) {
+  .service-row {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 2.2rem 0;
+  }
+  .service-row__icon { margin-bottom: 0; }
+}
+
+/* ── BAND 3: WHY US (dark) ── */
+.why { background: var(--charcoal); }
+.why h2 { color: var(--pearl); }
+.why .sec-label { color: var(--aqua); }
+
+.why__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 3.5rem;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.why__stat {
+  background: rgba(28,39,48,0.6);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+.why__stat-num {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 700;
+  color: var(--aqua);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+.why__stat-label {
+  font-size: 0.82rem;
+  color: rgba(245,246,248,0.65);
+  line-height: 1.7;
+}
+
+.why__features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+}
+.why__feature {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.04);
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.07);
+  transition: border-color 0.25s, background 0.25s;
+}
+.why__feature:hover {
+  border-color: rgba(0,194,212,0.3);
+  background: rgba(0,194,212,0.04);
+}
+.why__feature-icon {
+  color: var(--aqua);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.why__feature-title {
+  color: var(--pearl);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  line-height: 1.7;
+}
+.why__feature-desc {
+  color: rgba(245,246,248,0.6);
+  font-size: 0.875rem;
+  line-height: 1.85;
+}
+
+@media (min-width: 768px) {
+  .why__features { grid-template-columns: 1fr 1fr; }
+  .why__stats { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ── BAND 4: PULL QUOTE (light) ── */
+.quote-band { background: var(--pearl); overflow: hidden; }
+.quote-band__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.quote-band__line {
+  width: 3px;
+  height: 60px;
+  background: var(--aqua);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.quote-band__text {
+  color: var(--charcoal);
+}
+.quote-band__attr {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--platinum);
+  margin-top: 1rem;
+}
+
+.quote-band__img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center 40%;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+  .quote-band__inner {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 3.5rem;
+    padding: 8rem 3rem;
+  }
+  .quote-band__img {
+    width: 380px;
+    height: auto;
+    flex-shrink: 0;
+  }
+  .quote-band__line { height: auto; }
+}
+
+/* ── BAND 5: HOW IT WORKS (dark) ── */
+.how { background: var(--charcoal-deep); }
+.how h2 { color: var(--pearl); }
+.how .sec-label { color: var(--aqua); }
+
+.how__steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 3.5rem;
+  position: relative;
+}
+.how__steps::before {
+  content: '';
+  position: absolute;
+  left: 22px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(180deg, var(--aqua), transparent);
+}
+.how__step {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+  position: relative;
+}
+.how__step:last-child { padding-bottom: 0; }
+.how__step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--aqua);
+  color: var(--charcoal-deep);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.how__step-content { flex: 1; padding-top: 8px; }
+.how__step-title {
+  color: var(--pearl);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.65;
+}
+.how__step-desc {
+  color: rgba(245,246,248,0.6);
+  font-size: 0.9rem;
+  line-height: 1.85;
+}
+
+@media (min-width: 768px) {
+  .how__steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .how__steps::before { display: none; }
+  .how__step {
+    flex-direction: column;
+    padding-bottom: 0;
+  }
+}
+
+/* ── BAND 6: ROUTES (light) ── */
+.routes { background: var(--pearl); }
+.routes h2 { color: var(--charcoal-deep); }
+
+.routes__scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  margin-top: 3rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--platinum) transparent;
+}
+.routes__scroll::-webkit-scrollbar { height: 4px; }
+.routes__scroll::-webkit-scrollbar-track { background: transparent; }
+.routes__scroll::-webkit-scrollbar-thumb { background: var(--platinum); border-radius: 2px; }
+
+.route-card {
+  flex-shrink: 0;
+  width: 260px;
+  background: var(--charcoal);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.28s, box-shadow 0.28s;
+  position: relative;
+}
+.route-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(46,58,71,0.3);
+}
+.route-card__img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+.route-card__body { padding: 1.25rem; }
+.route-card__from-to {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--aqua);
+  margin-bottom: 0.5rem;
+}
+[lang="en"] .route-card__from-to {
+  font-family: 'IBM Plex Sans', sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.route-card__name {
+  color: var(--pearl);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  line-height: 1.6;
+}
+.route-card__detail {
+  color: rgba(245,246,248,0.5);
+  font-size: 0.8rem;
+  line-height: 1.8;
+}
+.route-card__price {
+  margin-top: 1rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+}
+.route-card__price-num {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+}
+.route-card__price-unit {
+  font-size: 0.75rem;
+  color: rgba(245,246,248,0.5);
+  line-height: 1.8;
+}
+
+/* ── BAND 7: IMAGE BREAK ── */
+.img-break {
+  position: relative;
+  height: 340px;
+  overflow: hidden;
+}
+.img-break__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 55%;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.img-break:hover .img-break__photo { transform: scale(1); }
+.img-break__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(28,39,48,0.72) 0%, rgba(28,39,48,0.1) 60%);
+  display: flex;
+  align-items: center;
+  padding: 2rem 1.5rem;
+}
+.img-break__caption {
+  color: var(--pearl);
+  max-width: 400px;
+}
+@media (min-width: 768px) {
+  .img-break { height: 420px; }
+  .img-break__overlay { padding: 3rem; }
+}
+
+/* ── BAND 8: TESTIMONIALS (dark) ── */
+.testimonials { background: var(--charcoal); }
+.testimonials h2 { color: var(--pearl); }
+.testimonials .sec-label { color: var(--aqua); }
+
+.testi__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.testi-card {
+  background: rgba(28,39,48,0.7);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 1.75rem;
+  transition: border-color 0.25s;
+}
+.testi-card:hover { border-color: rgba(0,194,212,0.25); }
+.testi-card__stars {
+  display: flex;
+  gap: 3px;
+  color: var(--aqua);
+  margin-bottom: 1rem;
+}
+.testi-card__text {
+  font-size: 0.92rem;
+  color: rgba(245,246,248,0.75);
+  line-height: 1.9;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+.testi-card__author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.testi-card__avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--aqua-dim), var(--charcoal));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--pearl);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+.testi-card__name {
+  color: var(--pearl);
+  font-weight: 600;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.testi-card__origin {
+  color: rgba(245,246,248,0.4);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .testi__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── BAND 9: CONTACT / CTA (aqua) ── */
+.cta-band { background: linear-gradient(135deg, var(--aqua-dim) 0%, var(--aqua) 55%, #00dff5 100%); }
+.cta-band .section-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+.cta-band h2 {
+  color: var(--charcoal-deep);
+  line-height: 1.45;
+}
+.cta-band p {
+  color: rgba(28,39,48,0.75);
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 500px;
+}
+.cta-band .btn-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--charcoal-deep);
+  color: var(--pearl);
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  min-height: 52px;
+  line-height: 1.8;
+  transition: transform 0.2s, box-shadow 0.25s;
+}
+.cta-band .btn-dark:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(28,39,48,0.3);
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.contact-method {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(28,39,48,0.12);
+  border-radius: 6px;
+  padding: 0.9rem 1.2rem;
+  color: var(--charcoal-deep);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.8;
+  transition: background 0.2s;
+}
+.contact-method:hover { background: rgba(28,39,48,0.2); }
+.contact-method i { flex-shrink: 0; }
+
+@media (min-width: 768px) {
+  .cta-band .section-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cta-band__left { max-width: 520px; }
+  .cta-band__right { min-width: 300px; }
+  .contact-methods { gap: 0.8rem; }
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--charcoal-deep);
+  padding: 3rem 1.5rem 2rem;
+}
+.footer__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.footer__brand-name {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--pearl);
+}
+.footer__brand-tagline {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(245,246,248,0.45);
+  margin-top: 4px;
+  line-height: 1.7;
+}
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+}
+.footer__links a {
+  font-family: 'IBM Plex Sans Thai', sans-serif;
+  font-size: 0.85rem;
+  color: rgba(245,246,248,0.5);
+  transition: color 0.2s;
+  line-height: 1.8;
+}
+.footer__links a:hover { color: var(--aqua); }
+.footer__bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: 1.5rem;
+  font-size: 0.76rem;
+  color: rgba(245,246,248,0.3);
+  line-height: 1.7;
+}
+@media (min-width: 768px) {
+  .footer__inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav__logo">
+    <span class="nav__logo-main">TRUD VAU SAMUI</span>
+    <span class="nav__logo-sub" data-lang-th="บริการรถรับส่ง" data-lang-en="Shuttle Service">บริการรถรับส่ง</span>
+  </a>
+  <div class="nav__right">
+    <ul class="nav__links">
+      <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
+      <li><a href="#why" data-lang-th="ทำไมต้องเลือกเรา" data-lang-en="Why Us">ทำไมต้องเลือกเรา</a></li>
+      <li><a href="#routes" data-lang-th="เส้นทาง" data-lang-en="Routes">เส้นทาง</a></li>
+      <li><a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a></li>
+    </ul>
+    <button class="lang-sw" aria-label="Switch language">
+      <i data-lucide="globe" width="14" height="14"></i>
+      <span class="lang-sw__label">TH</span>
+    </button>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav__mobile-menu" id="mobileMenu">
+  <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#why" data-lang-th="ทำไมต้องเลือกเรา" data-lang-en="Why Us">ทำไมต้องเลือกเรา</a>
+  <a href="#routes" data-lang-th="เส้นทาง" data-lang-en="Routes">เส้นทาง</a>
+  <a href="#how" data-lang-th="ขั้นตอน" data-lang-en="How It Works">ขั้นตอน</a>
+  <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+</div>
+
+<!-- ── HERO BAND (dark) ── -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <p class="hero__kicker en-only">Koh Samui &nbsp;·&nbsp; Island Shuttle</p>
+    <h1 class="hero__headline display-th reveal"
+        data-lang-th="เดินทางสะดวก&#10;ทั่วเกาะสมุย"
+        data-lang-en="YOUR ISLAND&#10;YOUR RIDE">เดินทางสะดวก&#10;ทั่วเกาะสมุย</h1>
+    <p class="hero__sub reveal reveal-delay-1"
+       data-lang-th="รถตู้สะอาด ผู้โดยสารสบาย ราคาโปร่งใส พร้อมพาคุณถึงทุกจุดบนเกาะสมุย ไม่ว่าจะสนามบิน โรงแรม หรือท่าเรือ"
+       data-lang-en="Clean, comfortable vans. Transparent pricing. Airport, hotel, pier — wherever you need to be on Koh Samui, we'll get you there.">รถตู้สะอาด ผู้โดยสารสบาย ราคาโปร่งใส พร้อมพาคุณถึงทุกจุดบนเกาะสมุย ไม่ว่าจะสนามบิน โรงแรม หรือท่าเรือ</p>
+    <div class="hero__cta reveal reveal-delay-2">
+      <a href="#contact" class="btn-primary">
+        <i data-lucide="phone" width="18" height="18"></i>
+        <span data-lang-th="จองตอนนี้" data-lang-en="Book Now">จองตอนนี้</span>
+      </a>
+      <a href="#routes" class="btn-outline">
+        <span data-lang-th="ดูเส้นทาง" data-lang-en="View Routes">ดูเส้นทาง</span>
+        <i data-lucide="arrow-right" width="18" height="18"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Van silhouette SVG bleeds between hero and next band -->
+  <div class="hero__van-silhouette">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <!-- pearl background fill -->
+      <rect x="0" y="60" width="1440" height="60" fill="#F5F6F8"/>
+      <!-- Van silhouette in charcoal-deep as negative space -->
+      <g fill="#1C2730">
+        <!-- Wave base -->
+        <path d="M0,80 Q360,50 720,70 Q1080,90 1440,65 L1440,120 L0,120 Z"/>
+        <!-- Van body (centered) -->
+        <rect x="530" y="22" width="380" height="72" rx="12"/>
+        <!-- Van roof -->
+        <rect x="565" y="5" width="265" height="30" rx="8"/>
+        <!-- Windshield cutout (pearl) -->
+        <rect x="575" y="10" width="85" height="22" rx="4" fill="#F5F6F8"/>
+        <!-- Rear window cutout (pearl) -->
+        <rect x="670" y="10" width="140" height="22" rx="4" fill="#F5F6F8"/>
+        <!-- Wheels -->
+        <circle cx="610" cy="97" r="22" fill="#1C2730"/>
+        <circle cx="610" cy="97" r="12" fill="#F5F6F8"/>
+        <circle cx="830" cy="97" r="22" fill="#1C2730"/>
+        <circle cx="830" cy="97" r="12" fill="#F5F6F8"/>
+      </g>
+      <!-- Aqua accent stripe under van -->
+      <rect x="530" y="92" width="380" height="3" fill="#00C2D4" opacity="0.6"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ── BAND 2: SERVICES (light) ── -->
+<section class="services band-light" id="services">
+  <div class="section-inner">
+    <span class="sec-label reveal en-only">— What We Offer</span>
+    <h2 class="reveal reveal-delay-1"
+        data-lang-th="บริการของเรา"
+        data-lang-en="Our Services">บริการของเรา</h2>
+
+    <div class="services__grid">
+
+      <div class="service-row reveal">
+        <div class="service-row__icon">
+          <i data-lucide="plane-landing" width="20" height="20"></i>
+        </div>
+        <div class="service-row__body">
+          <div class="service-row__num en-only">01</div>
+          <div class="service-row__title"
+               data-lang-th="รับ-ส่งสนามบินสมุย"
+               data-lang-en="Samui Airport Transfer">รับ-ส่งสนามบินสมุย</div>
+          <div class="service-row__desc"
+               data-lang-th="รับผู้โดยสารตรงเวลา ไม่ต้องรอ ไม่ต้องกังวล บริการรอรับที่สนามบินสมุยพร้อมป้ายชื่อ พาถึงโรงแรมหรือที่พักทุกแห่งบนเกาะ"
+               data-lang-en="Meet-and-greet service at Samui Airport. We track your flight and wait for you, name board in hand, then drive you straight to your hotel.">รับผู้โดยสารตรงเวลา ไม่ต้องรอ ไม่ต้องกังวล บริการรอรับที่สนามบินสมุยพร้อมป้ายชื่อ พาถึงโรงแรมหรือที่พักทุกแห่งบนเกาะ</div>
+        </div>
+      </div>
+
+      <div class="service-row reveal reveal-delay-1">
+        <div class="service-row__icon">
+          <i data-lucide="ship" width="20" height="20"></i>
+        </div>
+        <div class="service-row__body">
+          <div class="service-row__num en-only">02</div>
+          <div class="service-row__title"
+               data-lang-th="รับ-ส่งท่าเรือ"
+               data-lang-en="Ferry Pier Transfer">รับ-ส่งท่าเรือ</div>
+          <div class="service-row__desc"
+               data-lang-th="เชื่อมต่อท่าเรือนาทอน ท่าเรือบ้านดอน และท่าเรืออื่นๆ บนเกาะสมุย พร้อมรับ-ส่งตรงเวลาตามตารางเรือ"
+               data-lang-en="Connecting Nathon Pier, Ban Don Pier, and all island ferry terminals. We time your pick-up to your sailing schedule — no stress, no rushing.">เชื่อมต่อท่าเรือนาทอน ท่าเรือบ้านดอน และท่าเรืออื่นๆ บนเกาะสมุย พร้อมรับ-ส่งตรงเวลาตามตารางเรือ</div>
+        </div>
+      </div>
+
+      <div class="service-row reveal reveal-delay-2">
+        <div class="service-row__icon">
+          <i data-lucide="map-pin" width="20" height="20"></i>
+        </div>
+        <div class="service-row__body">
+          <div class="service-row__num en-only">03</div>
+          <div class="service-row__title"
+               data-lang-th="บริการเหมารถตู้รายวัน"
+               data-lang-en="Full-Day Van Charter">บริการเหมารถตู้รายวัน</div>
+          <div class="service-row__desc"
+               data-lang-th="เหมารถตู้รายวันสำหรับกลุ่มครอบครัว กลุ่มทัวร์ หรือองค์กร คนขับชำนาญเส้นทาง พูดภาษาไทยและภาษาอังกฤษได้"
+               data-lang-en="Charter a private van for your group — families, tours, corporate trips. Our bilingual drivers know every corner of the island.">เหมารถตู้รายวันสำหรับกลุ่มครอบครัว กลุ่มทัวร์ หรือองค์กร คนขับชำนาญเส้นทาง พูดภาษาไทยและภาษาอังกฤษได้</div>
+        </div>
+      </div>
+
+      <div class="service-row reveal reveal-delay-3">
+        <div class="service-row__icon">
+          <i data-lucide="clock" width="20" height="20"></i>
+        </div>
+        <div class="service-row__body">
+          <div class="service-row__num en-only">04</div>
+          <div class="service-row__title"
+               data-lang-th="บริการรถรับส่งกลางคืน"
+               data-lang-en="Night Shuttle Service">บริการรถรับส่งกลางคืน</div>
+          <div class="service-row__desc"
+               data-lang-th="เดินทางกลับจากถนนคนเดิน ผับ หรืองานปาร์ตี้อย่างปลอดภัย บริการพิเศษตอนกลางคืนพร้อมให้บริการตลอด 24 ชั่วโมง"
+               data-lang-en="Safe rides home from walking street, beach clubs, or late-night events. Available around the clock — just call or message us.">เดินทางกลับจากถนนคนเดิน ผับ หรืองานปาร์ตี้อย่างปลอดภัย บริการพิเศษตอนกลางคืนพร้อมให้บริการตลอด 24 ชั่วโมง</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── BAND 3: WHY US (dark) ── -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <span class="sec-label reveal en-only">— Why Choose Us</span>
+    <h2 class="reveal reveal-delay-1"
+        data-lang-th="ทำไมต้องเลือกเรา"
+        data-lang-en="Built for Travellers Who Expect More">ทำไมต้องเลือกเรา</h2>
+
+    <div class="why__stats">
+      <div class="why__stat reveal">
+        <div class="why__stat-num">12+</div>
+        <div class="why__stat-label" data-lang-th="ปีในธุรกิจ" data-lang-en="Years in Business">ปีในธุรกิจ</div>
+      </div>
+      <div class="why__stat reveal reveal-delay-1">
+        <div class="why__stat-num">50K</div>
+        <div class="why__stat-label" data-lang-th="ผู้โดยสารที่ไว้วางใจ" data-lang-en="Happy Passengers">ผู้โดยสารที่ไว้วางใจ</div>
+      </div>
+      <div class="why__stat reveal reveal-delay-2">
+        <div class="why__stat-num">24h</div>
+        <div class="why__stat-label" data-lang-th="บริการทุกวัน" data-lang-en="Service Daily">บริการทุกวัน</div>
+      </div>
+      <div class="why__stat reveal reveal-delay-3">
+        <div class="why__stat-num">4.9</div>
+        <div class="why__stat-label" data-lang-th="คะแนนความพึงพอใจ" data-lang-en="Avg. Rating">คะแนนความพึงพอใจ</div>
+      </div>
+    </div>
+
+    <div class="why__features">
+      <div class="why__feature reveal">
+        <div class="why__feature-icon"><i data-lucide="shield-check" width="22" height="22"></i></div>
+        <div>
+          <div class="why__feature-title" data-lang-th="ปลอดภัย มีใบอนุญาต" data-lang-en="Licensed & Insured">ปลอดภัย มีใบอนุญาต</div>
+          <div class="why__feature-desc" data-lang-th="คนขับทุกคนมีใบขับขี่สาธารณะ รถผ่านการตรวจสอบประจำปี และมีประกันภัยผู้โดยสาร" data-lang-en="All drivers hold a public transport licence. Vehicles pass annual inspection. Passenger insurance included.">คนขับทุกคนมีใบขับขี่สาธารณะ รถผ่านการตรวจสอบประจำปี และมีประกันภัยผู้โดยสาร</div>
+        </div>
+      </div>
+      <div class="why__feature reveal reveal-delay-1">
+        <div class="why__feature-icon"><i data-lucide="banknote" width="22" height="22"></i></div>
+        <div>
+          <div class="why__feature-title" data-lang-th="ราคาคงที่ ไม่มีค่าเพิ่ม" data-lang-en="Fixed Fare, No Surprises">ราคาคงที่ ไม่มีค่าเพิ่ม</div>
+          <div class="why__feature-desc" data-lang-th="ราคาตกลงล่วงหน้า ไม่มีค่ามิเตอร์ ไม่มีค่าธรรมเนียมแอบแฝง รู้ราคาก่อนขึ้นรถทุกครั้ง" data-lang-en="Agreed price upfront. No meter, no hidden fees. You know the total before you step in.">ราคาตกลงล่วงหน้า ไม่มีค่ามิเตอร์ ไม่มีค่าธรรมเนียมแอบแฝง รู้ราคาก่อนขึ้นรถทุกครั้ง</div>
+        </div>
+      </div>
+      <div class="why__feature reveal reveal-delay-2">
+        <div class="why__feature-icon"><i data-lucide="users" width="22" height="22"></i></div>
+        <div>
+          <div class="why__feature-title" data-lang-th="รับได้ถึง 10 คน" data-lang-en="Up to 10 Passengers">รับได้ถึง 10 คน</div>
+          <div class="why__feature-desc" data-lang-th="รถตู้กว้างขวาง รองรับกลุ่มใหญ่ มีที่เก็บกระเป๋าสัมภาระ เหมาะทั้งครอบครัวและกลุ่มเพื่อน" data-lang-en="Spacious vans seat up to 10 with luggage. Perfect for families, friend groups, or tour parties.">รถตู้กว้างขวาง รองรับกลุ่มใหญ่ มีที่เก็บกระเป๋าสัมภาระ เหมาะทั้งครอบครัวและกลุ่มเพื่อน</div>
+        </div>
+      </div>
+      <div class="why__feature reveal reveal-delay-3">
+        <div class="why__feature-icon"><i data-lucide="wifi" width="22" height="22"></i></div>
+        <div>
+          <div class="why__feature-title" data-lang-th="Wi-Fi และ USB ชาร์จ" data-lang-en="Wi-Fi & USB Charging">Wi-Fi และ USB ชาร์จ</div>
+          <div class="why__feature-desc" data-lang-th="อินเทอร์เน็ตฟรีในรถ พร้อมพอร์ต USB ทุกที่นั่ง สะดวกสบายตลอดการเดินทาง" data-lang-en="Free in-van Wi-Fi and USB ports at every seat. Stay connected on every ride.">อินเทอร์เน็ตฟรีในรถ พร้อมพอร์ต USB ทุกที่นั่ง สะดวกสบายตลอดการเดินทาง</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PULL QUOTE (light) ── -->
+<section class="quote-band band-light">
+  <div class="quote-band__inner">
+    <div class="quote-band__line reveal"></div>
+    <div class="quote-band__text reveal reveal-delay-1">
+      <p class="pull-quote-th"
+         data-lang-th="&ldquo;ทะเลสีฟ้าอยู่แค่เอื้อม — ปล่อยให้เราพาคุณถึงที่หมาย&rdquo;"
+         data-lang-en="&ldquo;The blue sea is within reach — let us take you there.&rdquo;">&ldquo;ทะเลสีฟ้าอยู่แค่เอื้อม — ปล่อยให้เราพาคุณถึงที่หมาย&rdquo;</p>
+      <div class="quote-band__attr en-only">Trud Vau Samui Service</div>
+    </div>
+    <img class="quote-band__img reveal reveal-delay-2"
+         src="https://images.unsplash.com/photo-1668882596192-b1dfc2ff63d6?w=760&h=520&fit=crop"
+         alt="Island view from the sea" loading="lazy">
+  </div>
+</section>
+
+<!-- ── BAND 5: HOW IT WORKS (dark) ── -->
+<section class="how band-deep" id="how">
+  <div class="section-inner">
+    <span class="sec-label reveal en-only">— Simple Process</span>
+    <h2 class="reveal reveal-delay-1"
+        data-lang-th="จองและเดินทาง ง่ายมาก"
+        data-lang-en="Book & Ride in 4 Steps">จองและเดินทาง ง่ายมาก</h2>
+
+    <div class="how__steps">
+      <div class="how__step reveal">
+        <div class="how__step-num">1</div>
+        <div class="how__step-content">
+          <div class="how__step-title" data-lang-th="ติดต่อเรา" data-lang-en="Contact Us">ติดต่อเรา</div>
+          <div class="how__step-desc" data-lang-th="โทร LINE หรือ WhatsApp แจ้งวันเวลาและจุดหมาย" data-lang-en="Call, LINE, or WhatsApp us with your date, time, and destination.">โทร LINE หรือ WhatsApp แจ้งวันเวลาและจุดหมาย</div>
+        </div>
+      </div>
+      <div class="how__step reveal reveal-delay-1">
+        <div class="how__step-num">2</div>
+        <div class="how__step-content">
+          <div class="how__step-title" data-lang-th="รับใบเสนอราคา" data-lang-en="Get a Quote">รับใบเสนอราคา</div>
+          <div class="how__step-desc" data-lang-th="เราแจ้งราคาคงที่ทันที ไม่มีการต่อรองยุ่งยาก" data-lang-en="We send a fixed-price quote instantly — no haggling, no surprises.">เราแจ้งราคาคงที่ทันที ไม่มีการต่อรองยุ่งยาก</div>
+        </div>
+      </div>
+      <div class="how__step reveal reveal-delay-2">
+        <div class="how__step-num">3</div>
+        <div class="how__step-content">
+          <div class="how__step-title" data-lang-th="ยืนยันการจอง" data-lang-en="Confirm Booking">ยืนยันการจอง</div>
+          <div class="how__step-desc" data-lang-th="ยืนยันและรอรับ SMS หรือ LINE แจ้งรายละเอียดรถและคนขับ" data-lang-en="Confirm and receive your driver details and vehicle info via LINE or SMS.">ยืนยันและรอรับ SMS หรือ LINE แจ้งรายละเอียดรถและคนขับ</div>
+        </div>
+      </div>
+      <div class="how__step reveal reveal-delay-3">
+        <div class="how__step-num">4</div>
+        <div class="how__step-content">
+          <div class="how__step-title" data-lang-th="เดินทางสบายใจ" data-lang-en="Enjoy the Ride">เดินทางสบายใจ</div>
+          <div class="how__step-desc" data-lang-th="คนขับรอรับตรงเวลา นั่งสบาย เย็นสบาย ถึงที่หมายอย่างปลอดภัย" data-lang-en="Your driver arrives on time. Sit back, cool air, arrive safely.">คนขับรอรับตรงเวลา นั่งสบาย เย็นสบาย ถึงที่หมายอย่างปลอดภัย</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BAND 6: ROUTES (light) ── -->
+<section class="routes band-light" id="routes">
+  <div class="section-inner" style="padding-bottom: 2rem;">
+    <span class="sec-label reveal en-only">— Popular Routes</span>
+    <h2 class="reveal reveal-delay-1"
+        data-lang-th="เส้นทางยอดนิยม"
+        data-lang-en="Popular Routes">เส้นทางยอดนิยม</h2>
+    <p class="reveal reveal-delay-2" style="color:#5a6878; margin-top:0.75rem; font-size:0.9rem;"
+       data-lang-th="เลื่อนดูเส้นทางทั้งหมด — ราคาเริ่มต้นสำหรับ 1 คัน"
+       data-lang-en="Swipe to explore — prices per vehicle, not per person">เลื่อนดูเส้นทางทั้งหมด — ราคาเริ่มต้นสำหรับ 1 คัน</p>
+  </div>
+  <div style="padding: 0 0 4rem;">
+    <div class="routes__scroll" style="padding: 0 1.5rem 1rem;">
+
+      <div class="route-card reveal">
+        <img class="route-card__img" src="https://images.unsplash.com/photo-1519291547479-d8d5fa22f0b4?w=520&h=320&fit=crop" alt="Samui airport" loading="lazy">
+        <div class="route-card__body">
+          <div class="route-card__from-to">
+            <i data-lucide="plane" width="12" height="12"></i>
+            <span data-lang-th="สนามบิน → โรงแรม" data-lang-en="Airport → Hotel">สนามบิน → โรงแรม</span>
+          </div>
+          <div class="route-card__name" data-lang-th="สนามบินสมุย — เชิงมน" data-lang-en="Samui Airport — Chaweng">สนามบินสมุย — เชิงมน</div>
+          <div class="route-card__detail" data-lang-th="~20 นาที · ทุกโรงแรมในเชิงมน" data-lang-en="~20 min · All Chaweng hotels">~20 นาที · ทุกโรงแรมในเชิงมน</div>
+          <div class="route-card__price">
+            <span class="route-card__price-num">฿450</span>
+            <span class="route-card__price-unit" data-lang-th="/ คัน" data-lang-en="/ van">/ คัน</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card reveal reveal-delay-1">
+        <img class="route-card__img" src="https://images.unsplash.com/photo-1576363399723-37e96768a492?w=520&h=320&fit=crop" alt="Tropical beach" loading="lazy">
+        <div class="route-card__body">
+          <div class="route-card__from-to">
+            <i data-lucide="ship" width="12" height="12"></i>
+            <span data-lang-th="ท่าเรือ → โรงแรม" data-lang-en="Pier → Hotel">ท่าเรือ → โรงแรม</span>
+          </div>
+          <div class="route-card__name" data-lang-th="ท่าเรือนาทอน — ลมาย" data-lang-en="Nathon Pier — Lamai">ท่าเรือนาทอน — ลมาย</div>
+          <div class="route-card__detail" data-lang-th="~30 นาที · รับตามตารางเรือ" data-lang-en="~30 min · Ferry-timed pickup">~30 นาที · รับตามตารางเรือ</div>
+          <div class="route-card__price">
+            <span class="route-card__price-num">฿550</span>
+            <span class="route-card__price-unit" data-lang-th="/ คัน" data-lang-en="/ van">/ คัน</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card reveal reveal-delay-2">
+        <img class="route-card__img" src="https://images.unsplash.com/photo-1655098756467-b25e9bb5d5c9?w=520&h=320&fit=crop" alt="Sunset coast" loading="lazy">
+        <div class="route-card__body">
+          <div class="route-card__from-to">
+            <i data-lucide="map-pin" width="12" height="12"></i>
+            <span data-lang-th="รับส่งระหว่างหาด" data-lang-en="Beach to Beach">รับส่งระหว่างหาด</span>
+          </div>
+          <div class="route-card__name" data-lang-th="เชิงมน — หาดบ่อผุด" data-lang-en="Chaweng — Bophut">เชิงมน — หาดบ่อผุด</div>
+          <div class="route-card__detail" data-lang-th="~25 นาที · วิวทะเลสวยงาม" data-lang-en="~25 min · Scenic coastal drive">~25 นาที · วิวทะเลสวยงาม</div>
+          <div class="route-card__price">
+            <span class="route-card__price-num">฿380</span>
+            <span class="route-card__price-unit" data-lang-th="/ คัน" data-lang-en="/ van">/ คัน</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card reveal reveal-delay-3">
+        <img class="route-card__img" src="https://images.unsplash.com/photo-1486673748761-a8d18475c757?w=520&h=320&fit=crop" alt="Open road" loading="lazy">
+        <div class="route-card__body">
+          <div class="route-card__from-to">
+            <i data-lucide="calendar" width="12" height="12"></i>
+            <span data-lang-th="เหมารถรายวัน" data-lang-en="Full-Day Charter">เหมารายวัน</span>
+          </div>
+          <div class="route-card__name" data-lang-th="ทัวร์รอบเกาะสมุย" data-lang-en="Island Round-Tour">ทัวร์รอบเกาะสมุย</div>
+          <div class="route-card__detail" data-lang-th="8 ชั่วโมง · ออกแบบเส้นทางเองได้" data-lang-en="8 hours · Custom itinerary">8 ชั่วโมง · ออกแบบเส้นทางเองได้</div>
+          <div class="route-card__price">
+            <span class="route-card__price-num">฿2,800</span>
+            <span class="route-card__price-unit" data-lang-th="/ วัน" data-lang-en="/ day">/ วัน</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-card reveal">
+        <img class="route-card__img" src="https://images.unsplash.com/photo-1626327547387-b2663804dd50?w=520&h=320&fit=crop" alt="White van" loading="lazy">
+        <div class="route-card__body">
+          <div class="route-card__from-to">
+            <i data-lucide="moon" width="12" height="12"></i>
+            <span data-lang-th="กลางคืน" data-lang-en="Night Ride">กลางคืน</span>
+          </div>
+          <div class="route-card__name" data-lang-th="กลับโรงแรมหลังเที่ยงคืน" data-lang-en="Late-Night Return">กลับโรงแรมหลังเที่ยงคืน</div>
+          <div class="route-card__detail" data-lang-th="ถนนคนเดิน → โรงแรม · 24 ชม." data-lang-en="Walking St → Hotel · 24-hour">ถนนคนเดิน → โรงแรม · 24 ชม.</div>
+          <div class="route-card__price">
+            <span class="route-card__price-num">฿600</span>
+            <span class="route-card__price-unit" data-lang-th="/ คัน" data-lang-en="/ van">/ คัน</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── IMAGE BREAK ── -->
+<div class="img-break">
+  <img class="img-break__photo"
+       src="https://images.unsplash.com/photo-1576363399723-37e96768a492?w=1600&h=840&fit=crop"
+       alt="Golden hour on Koh Samui beach" loading="lazy">
+  <div class="img-break__overlay">
+    <div class="img-break__caption">
+      <p class="pull-quote-th reveal"
+         style="color:#F5F6F8;"
+         data-lang-th="&ldquo;เกาะสมุยสวยที่สุดเมื่อคุณไม่ต้องกังวลเรื่องเดินทาง&rdquo;"
+         data-lang-en="&ldquo;Samui is most beautiful when you&rsquo;re not worried about transport.&rdquo;">&ldquo;เกาะสมุยสวยที่สุดเมื่อคุณไม่ต้องกังวลเรื่องเดินทาง&rdquo;</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── BAND 8: TESTIMONIALS (dark) ── -->
+<section class="testimonials" id="reviews">
+  <div class="section-inner">
+    <span class="sec-label reveal en-only">— Guest Reviews</span>
+    <h2 class="reveal reveal-delay-1"
+        data-lang-th="เสียงจากลูกค้าของเรา"
+        data-lang-en="What Guests Say">เสียงจากลูกค้าของเรา</h2>
+
+    <div class="testi__grid">
+      <div class="testi-card reveal">
+        <div class="testi-card__stars">
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+        </div>
+        <p class="testi-card__text"
+           data-lang-th="&ldquo;คนขับรอที่สนามบินตรงเวลามาก ป้ายชื่อชัดเจน รถสะอาดมาก แอร์เย็นสบาย ประทับใจมากครับ จะใช้บริการอีกแน่นอน&rdquo;"
+           data-lang-en="&ldquo;Driver was at the airport on time with a clear name board. Van was spotless and icy cold. Absolutely will use again on our next Samui trip.&rdquo;">&ldquo;คนขับรอที่สนามบินตรงเวลามาก ป้ายชื่อชัดเจน รถสะอาดมาก แอร์เย็นสบาย ประทับใจมากครับ จะใช้บริการอีกแน่นอน&rdquo;</p>
+        <div class="testi-card__author">
+          <div class="testi-card__avatar">AK</div>
+          <div>
+            <div class="testi-card__name">Aroon K.</div>
+            <div class="testi-card__origin" data-lang-th="กรุงเทพมหานคร" data-lang-en="Bangkok, Thailand">กรุงเทพมหานคร</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-card__stars">
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+        </div>
+        <p class="testi-card__text"
+           data-lang-th="&ldquo;เราสี่คนพร้อมกระเป๋าเต็มคัน ยังนั่งสบายมาก ราคาเป็นธรรม คนขับพูดภาษาอังกฤษได้ ช่วยแนะนำร้านอาหารอีกด้วย&rdquo;"
+           data-lang-en="&ldquo;Four of us with loads of luggage — still plenty of room. Fair fixed price, driver spoke great English and even recommended a great restaurant.&rdquo;">&ldquo;เราสี่คนพร้อมกระเป๋าเต็มคัน ยังนั่งสบายมาก ราคาเป็นธรรม คนขับพูดภาษาอังกฤษได้ ช่วยแนะนำร้านอาหารอีกด้วย&rdquo;</p>
+        <div class="testi-card__author">
+          <div class="testi-card__avatar">SP</div>
+          <div>
+            <div class="testi-card__name">Sophie P.</div>
+            <div class="testi-card__origin" data-lang-th="ปารีส ฝรั่งเศส" data-lang-en="Paris, France">ปารีส ฝรั่งเศส</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-card__stars">
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+          <i data-lucide="star" width="14" height="14"></i>
+        </div>
+        <p class="testi-card__text"
+           data-lang-th="&ldquo;เหมารถทั้งวันเพื่อทัวร์รอบเกาะ คนขับดูแลดีมาก พาไปจุดสวยๆ ที่ไม่รู้จัก คุ้มค่ามากเลยค่ะ&rdquo;"
+           data-lang-en="&ldquo;Full-day charter around the island. Our driver took us to hidden spots we'd never have found. Outstanding value — highly recommend.&rdquo;">&ldquo;เหมารถทั้งวันเพื่อทัวร์รอบเกาะ คนขับดูแลดีมาก พาไปจุดสวยๆ ที่ไม่รู้จัก คุ้มค่ามากเลยค่ะ&rdquo;</p>
+        <div class="testi-card__author">
+          <div class="testi-card__avatar">NR</div>
+          <div>
+            <div class="testi-card__name">Nami R.</div>
+            <div class="testi-card__origin" data-lang-th="โตเกียว ญี่ปุ่น" data-lang-en="Tokyo, Japan">โตเกียว ญี่ปุ่น</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BAND 9: CONTACT / CTA (aqua) ── -->
+<section class="cta-band" id="contact">
+  <div class="section-inner">
+    <div class="cta-band__left reveal">
+      <span class="sec-label" style="color: rgba(28,39,48,0.55);" data-lang-th="— ติดต่อเรา" data-lang-en="— Get in Touch">— ติดต่อเรา</span>
+      <h2 style="margin-bottom:0.75rem;"
+          data-lang-th="พร้อมพาคุณไปทุกที่บนสมุย"
+          data-lang-en="Ready to Take You Anywhere on Samui">พร้อมพาคุณไปทุกที่บนสมุย</h2>
+      <p data-lang-th="จองง่าย รับราคาทันที โทรหรือส่งข้อความหาเราได้เลย พร้อมให้บริการตลอด 24 ชั่วโมง ทุกวัน"
+         data-lang-en="Book in minutes. Call or message us now — we reply fast, 24 hours a day, every day.">จองง่าย รับราคาทันที โทรหรือส่งข้อความหาเราได้เลย พร้อมให้บริการตลอด 24 ชั่วโมง ทุกวัน</p>
+    </div>
+    <div class="cta-band__right reveal reveal-delay-1">
+      <div class="contact-methods">
+        <a href="tel:+66812345678" class="contact-method">
+          <i data-lucide="phone" width="18" height="18"></i>
+          <span>+66 81 234 5678</span>
+        </a>
+        <a href="https://line.me/ti/p/trudvausamui" class="contact-method">
+          <i data-lucide="message-circle" width="18" height="18"></i>
+          <span data-lang-th="LINE: @trudvausamui" data-lang-en="LINE: @trudvausamui">LINE: @trudvausamui</span>
+        </a>
+        <a href="https://wa.me/66812345678" class="contact-method">
+          <i data-lucide="message-square" width="18" height="18"></i>
+          <span data-lang-th="WhatsApp ตลอด 24 ชม." data-lang-en="WhatsApp — 24h">WhatsApp ตลอด 24 ชม.</span>
+        </a>
+        <a href="mailto:book@trudvausamui.com" class="contact-method">
+          <i data-lucide="mail" width="18" height="18"></i>
+          <span>book@trudvausamui.com</span>
+        </a>
+      </div>
+      <a href="tel:+66812345678" class="btn-dark" style="margin-top:1.5rem;">
+        <i data-lucide="phone-call" width="18" height="18"></i>
+        <span data-lang-th="โทรจองเลย" data-lang-en="Call to Book Now">โทรจองเลย</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer__inner">
+    <div>
+      <div class="footer__brand-name">TRUD VAU SAMUI SERVICE</div>
+      <div class="footer__brand-tagline"
+           data-lang-th="บริการรถตู้รับส่งบนเกาะสมุย"
+           data-lang-en="Island shuttle service — Koh Samui, Thailand">บริการรถตู้รับส่งบนเกาะสมุย</div>
+    </div>
+    <nav class="footer__links">
+      <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+      <a href="#routes" data-lang-th="เส้นทาง" data-lang-en="Routes">เส้นทาง</a>
+      <a href="#why" data-lang-th="เกี่ยวกับเรา" data-lang-en="About Us">เกี่ยวกับเรา</a>
+      <a href="#reviews" data-lang-th="รีวิว" data-lang-en="Reviews">รีวิว</a>
+      <a href="#contact" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
+    </nav>
+  </div>
+  <div class="footer__inner" style="margin-top:2rem;">
+    <div class="footer__bottom"
+         data-lang-th="© 2025 ทรัด โว สมุย เซอร์วิส · เกาะสมุย สุราษฎร์ธานี ประเทศไทย"
+         data-lang-en="© 2025 Trud Vau Samui Service · Koh Samui, Surat Thani, Thailand">© 2025 ทรัด โว สมุย เซอร์วิส · เกาะสมุย สุราษฎร์ธานี ประเทศไทย</div>
+  </div>
+</footer>
+
+<script>
+// ── HAMBURGER ──
+(function(){
+  var burger = document.getElementById('burger');
+  var menu   = document.getElementById('mobileMenu');
+  if (!burger || !menu) return;
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+// ── NAV SCROLL ──
+(function(){
+  var nav = document.getElementById('nav');
+  function onScroll(){
+    if (window.scrollY > 60) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
+// ── INTERSECTION OBSERVER REVEALS ──
+(function(){
+  var els = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  els.forEach(function(el){ io.observe(el); });
+})();
+
+// ── PULL QUOTE LANG SYNC handled by main lang switcher ──
+</script>
+
+<!-- ── LANG SWITCHER ── -->
+<script>
+(function(){var K='site-lang',L=localStorage.getItem(K)||'th';function S(l){L=l;localStorage.setItem(K,l);document.documentElement.lang=l;document.querySelectorAll('[data-lang-th]').forEach(function(e){var t=e.getAttribute('data-lang-'+l);if(t!==null){e.textContent=t}});var lb=document.querySelector('.lang-sw__label');if(lb){lb.textContent=l.toUpperCase()}}var sw=document.querySelector('.lang-sw');if(sw){sw.addEventListener('click',function(){S(L==='th'?'en':'th')});sw.style.cursor='pointer'}if(L!=='th'){S(L)}})();
+</script>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

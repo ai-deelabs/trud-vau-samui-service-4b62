@@ -1,0 +1,5 @@
+DIRECTION 1: Full-bleed hero with van photography bleeding into whitespace, content in asymmetric two-column offset grid — condensed grotesque caps (tight tracking, heavy weight) paired with light-weight body — warm white (#F8F7F5) + brushed silver (#C8CDD4) + midnight navy (#0D1B2A) + coastal cyan (#4FC3D7) — precise, unhurried, premium transfer service
+
+DIRECTION 2: Horizontal scroll sections with oversized route numbers as typographic landmarks, sticky sidebar navigation — geometric slab serif headlines contrasting with monospace data labels — cool white (#FAFBFC) + steel grey (#8A9199) + deep ink (#111827) + muted seafoam (#A8D5DC) — systematic, cartographic, confident infrastructure
+
+DIRECTION 3: Stacked full-width bands alternating light/dark, van silhouette as negative-space graphic element bleeding between sections — humanist sans with wide letter-spacing on oversized display size, italic contrast on pull-quotes — pearl white (#F5F6F8) + platinum (#B8BFC7) + slate charcoal (#2E3A47) + electric aqua (#00C2D4) — open-road calm with a flash of coastal vivacity
