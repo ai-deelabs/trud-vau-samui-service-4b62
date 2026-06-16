@@ -1115,6 +1115,76 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
   .gallery-card.g-wide { grid-column: span 2; }
   .gallery-card.g-tall { grid-row: span 2; }
 }
+
+/* ─── FLEET / OUR VEHICLE ──────────────────────────── */
+.fleet-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+.fleet-visual { display: flex; flex-direction: column; gap: 1rem; }
+.fleet-main {
+  width: 100%;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(13,27,42,0.14);
+  display: block;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+.fleet-thumbs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fleet-thumbs img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(13,27,42,0.12);
+  display: block;
+}
+.fleet-name {
+  font-family: var(--ff-head);
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+body[lang="th"] .fleet-name { letter-spacing: 0; }
+.fleet-desc {
+  font-size: 0.95rem;
+  color: var(--text-lt);
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+}
+.fleet-features {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.9rem 1.25rem;
+  margin-bottom: 2rem;
+}
+.fleet-features li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+.fleet-feat-icon {
+  flex: none;
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border-radius: 9px;
+  background: rgba(79,195,215,0.14);
+  color: var(--cyan);
+}
+@media (min-width: 768px) {
+  .fleet-grid { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
+  .fleet-thumbs img { height: 175px; }
+}
 </style>
 </head>
 <body>
@@ -1124,6 +1194,7 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
   <div class="nav-logo"><img src="img/logo.jpeg" alt="Trud Vau"></div>
   <ul class="nav-links">
     <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
+    <li><a href="#fleet" data-lang-th="รถของเรา" data-lang-en="Our Fleet">รถของเรา</a></li>
     <li><a href="#how" data-lang-th="วิธีใช้งาน" data-lang-en="How It Works">วิธีใช้งาน</a></li>
     <li><a href="#routes" data-lang-th="เส้นทาง" data-lang-en="Routes">เส้นทาง</a></li>
     <li><a href="#gallery" data-lang-th="สถานที่เที่ยว" data-lang-en="Destinations">สถานที่เที่ยว</a></li>
@@ -1145,8 +1216,10 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a>
+  <a href="#fleet" data-lang-th="รถของเรา" data-lang-en="Our Fleet">รถของเรา</a>
   <a href="#how" data-lang-th="วิธีใช้งาน" data-lang-en="How It Works">วิธีใช้งาน</a>
   <a href="#routes" data-lang-th="เส้นทาง" data-lang-en="Routes">เส้นทาง</a>
+  <a href="#gallery" data-lang-th="สถานที่เที่ยว" data-lang-en="Destinations">สถานที่เที่ยว</a>
   <a href="#why" data-lang-th="เกี่ยวกับเรา" data-lang-en="About">เกี่ยวกับเรา</a>
   <a href="#cta" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a>
   <a href="#cta" class="menu-cta" data-lang-th="จองเลย" data-lang-en="Book Now">จองเลย</a>
@@ -1236,6 +1309,40 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
           <p class="service-desc" data-lang-th="เช่ารถตู้พร้อมคนขับสำหรับทริปท่องเที่ยวทั้งวัน สำรวจเกาะสมุยในแบบที่คุณต้องการ ยืดหยุ่น ไม่มีค่าใช้จ่ายซ่อนเร้น" data-lang-en="Hire a van and driver for a full day — explore the island at your own pace. Fixed rate, full flexibility, zero hidden fees.">เช่ารถตู้พร้อมคนขับสำหรับทริปท่องเที่ยวทั้งวัน สำรวจเกาะสมุยในแบบที่คุณต้องการ ยืดหยุ่น ไม่มีค่าใช้จ่ายซ่อนเร้น</p>
           <span class="service-tag"><i data-lucide="users" width="12" height="12"></i> <span data-lang-th="สูงสุด 10 ที่นั่ง" data-lang-en="Up to 10 Seats">สูงสุด 10 ที่นั่ง</span></span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FLEET / OUR VEHICLE ═══════════════════════════ -->
+<section id="fleet" class="section">
+  <div class="section-inner">
+    <div class="services-header reveal">
+      <p class="label" data-lang-th="รถของเรา" data-lang-en="Our Fleet">รถของเรา</p>
+      <h2 class="heading-lg" style="color:var(--navy)" data-lang-th="รถตู้ VIP พร้อมคนขับมืออาชีพ" data-lang-en="VIP Vans With Professional Drivers">รถตู้ VIP พร้อมคนขับมืออาชีพ</h2>
+    </div>
+    <div class="fleet-grid">
+      <div class="fleet-visual reveal-left">
+        <img class="fleet-main" src="img/car_nobg.png" alt="Toyota Hiace VIP van" loading="lazy">
+        <div class="fleet-thumbs">
+          <img src="img/carinterior1.jpg" alt="VIP leather captain seats" loading="lazy">
+          <img src="img/carinterior2.jpg" alt="Ambient-lit cabin interior" loading="lazy">
+        </div>
+      </div>
+      <div class="fleet-info reveal-right">
+        <h3 class="fleet-name" data-lang-th="โตโยต้า ไฮเอซ VIP" data-lang-en="Toyota Hiace VIP">โตโยต้า ไฮเอซ VIP</h3>
+        <p class="fleet-desc" data-lang-th="รถตู้รุ่นใหม่ สภาพดี ดูแลสะอาดทุกเที่ยว ภายในตกแต่งสไตล์ VIP เบาะหนังปรับเอนนั่งสบาย พร้อมไฟบรรยากาศและพื้นที่เก็บสัมภาระกว้างขวาง เดินทางทั่วเกาะสมุยอย่างสะดวกและปลอดภัย" data-lang-en="Modern, well-maintained vans cleaned before every trip. A VIP-style cabin with reclining leather captain seats, ambient lighting, and generous luggage space — travel across Koh Samui in comfort and safety.">รถตู้รุ่นใหม่ สภาพดี ดูแลสะอาดทุกเที่ยว ภายในตกแต่งสไตล์ VIP เบาะหนังปรับเอนนั่งสบาย พร้อมไฟบรรยากาศและพื้นที่เก็บสัมภาระกว้างขวาง เดินทางทั่วเกาะสมุยอย่างสะดวกและปลอดภัย</p>
+        <ul class="fleet-features">
+          <li><span class="fleet-feat-icon"><i data-lucide="users" width="18" height="18"></i></span><span data-lang-th="นั่งได้สูงสุด 10 ท่าน" data-lang-en="Up to 10 passengers">นั่งได้สูงสุด 10 ท่าน</span></li>
+          <li><span class="fleet-feat-icon"><i data-lucide="armchair" width="18" height="18"></i></span><span data-lang-th="เบาะหนัง VIP ปรับเอน" data-lang-en="Reclining VIP seats">เบาะหนัง VIP ปรับเอน</span></li>
+          <li><span class="fleet-feat-icon"><i data-lucide="snowflake" width="18" height="18"></i></span><span data-lang-th="แอร์เย็นทั้งคัน" data-lang-en="Cold air-conditioning">แอร์เย็นทั้งคัน</span></li>
+          <li><span class="fleet-feat-icon"><i data-lucide="wifi" width="18" height="18"></i></span><span data-lang-th="Wi-Fi ฟรีบนรถ" data-lang-en="Free on-board Wi-Fi">Wi-Fi ฟรีบนรถ</span></li>
+          <li><span class="fleet-feat-icon"><i data-lucide="sparkles" width="18" height="18"></i></span><span data-lang-th="ไฟบรรยากาศ + จอความบันเทิง" data-lang-en="Ambient lighting + screen">ไฟบรรยากาศ + จอความบันเทิง</span></li>
+          <li><span class="fleet-feat-icon"><i data-lucide="luggage" width="18" height="18"></i></span><span data-lang-th="พื้นที่เก็บสัมภาระกว้าง" data-lang-en="Spacious luggage area">พื้นที่เก็บสัมภาระกว้าง</span></li>
+        </ul>
+        <a href="#cta" class="btn-primary" style="display:inline-flex">
+          <span data-lang-th="จองรถตู้คันนี้" data-lang-en="Book This Van">จองรถตู้คันนี้</span>
+        </a>
       </div>
     </div>
   </div>
