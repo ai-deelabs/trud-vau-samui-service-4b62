@@ -1,3 +1,5 @@
 meta.json
 .claude-*.log
 .omc/
+.DS_Store
+**/.DS_Store
