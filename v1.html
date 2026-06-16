@@ -1185,6 +1185,52 @@ body[lang="th"] .fleet-name { letter-spacing: 0; }
   .fleet-grid { grid-template-columns: 1.05fr 0.95fr; gap: 3rem; }
   .fleet-thumbs img { height: 175px; }
 }
+.fleet-main, .fleet-thumbs img { cursor: zoom-in; transition: transform 0.3s var(--ease); }
+.fleet-thumbs img:hover { transform: scale(1.02); }
+
+/* ─── LIGHTBOX ─────────────────────────────────────── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: rgba(13,27,42,0.92);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
+  cursor: zoom-out;
+}
+.lightbox.open { opacity: 1; visibility: visible; }
+.lightbox img {
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  transform: scale(0.96);
+  transition: transform 0.3s var(--ease);
+}
+.lightbox.open img { transform: scale(1); }
+.lightbox-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  width: 44px; height: 44px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s var(--ease);
+}
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
 </style>
 </head>
 <body>
@@ -1347,6 +1393,12 @@ body[lang="th"] .fleet-name { letter-spacing: 0; }
     </div>
   </div>
 </section>
+
+<!-- ═══ LIGHTBOX ══════════════════════════════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <span class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <!-- ═══ HOW IT WORKS ════════════════════════════════ -->
 <section id="how">
@@ -1846,6 +1898,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ── Lightbox for fleet images
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || '';
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.querySelectorAll('.fleet-main, .fleet-thumbs img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
+lightbox.addEventListener('click', closeLightbox);
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 </script>
 
 <!-- ── Language switcher (exact script from brief) -->
