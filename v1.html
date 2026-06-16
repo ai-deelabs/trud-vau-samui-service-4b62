@@ -91,12 +91,12 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.85rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   transition: background 0.4s var(--ease), padding 0.4s var(--ease), box-shadow 0.4s;
 }
 #nav.scrolled {
   background: var(--navy);
-  padding: 0.6rem 1.5rem;
+  padding: 0.75rem 1.5rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.25);
 }
 .nav-logo {
@@ -109,12 +109,6 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
   line-height: 1.2;
 }
 .nav-logo span { color: var(--cyan); }
-.nav-logo img {
-  display: block;
-  height: 46px;
-  width: auto;
-  border-radius: 8px;
-}
 .nav-links {
   display: none;
   gap: 2rem;
@@ -237,8 +231,8 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
 .overlay.open { display: block; }
 
 @media (min-width: 768px) {
-  #nav { padding: 0.9rem 3rem; }
-  #nav.scrolled { padding: 0.6rem 3rem; }
+  #nav { padding: 1.5rem 3rem; }
+  #nav.scrolled { padding: 0.9rem 3rem; }
   .nav-links { display: flex; }
   .nav-cta { display: block; }
   .hamburger { display: none; }
@@ -917,10 +911,7 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
   justify-content: center;
   font-size: 0.9rem;
   color: rgba(255,255,255,0.65);
-  text-decoration: none;
-  transition: color 0.25s var(--ease);
 }
-a.cta-contact-item:hover { color: #fff; }
 .cta-contact-item i { color: var(--cyan); }
 
 @media (min-width: 768px) {
@@ -947,7 +938,6 @@ footer {
   margin-bottom: 1.5rem;
 }
 .footer-brand .nav-logo { font-size: 1.4rem; }
-.footer-brand .nav-logo img { height: 120px; border-radius: 12px; }
 .footer-desc {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.4);
@@ -1036,97 +1026,17 @@ footer {
 
 /* stagger children */
 .stagger > * { transition-delay: calc(var(--i, 0) * 0.1s); }
-
-/* ─── GALLERY / DESTINATIONS ──────────────────────── */
-.gallery-header { text-align: center; margin-bottom: 3rem; }
-.gallery-header .label { margin-bottom: 0.75rem; }
-.gallery-header .heading-lg { color: var(--navy); }
-.gallery-sub {
-  font-size: 0.95rem;
-  color: var(--text-lt);
-  max-width: 540px;
-  margin: 0.75rem auto 0;
-  line-height: 1.7;
-}
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-.gallery-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 16px;
-  cursor: pointer;
-  min-height: 220px;
-  box-shadow: 0 10px 30px rgba(13,27,42,0.12);
-}
-.gallery-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.6s var(--ease);
-}
-.gallery-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(13,27,42,0.75) 0%, rgba(13,27,42,0.15) 45%, rgba(13,27,42,0) 70%);
-  transition: opacity 0.4s var(--ease);
-}
-.gallery-card:hover img { transform: scale(1.07); }
-.gallery-caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  z-index: 2;
-  padding: 1.25rem 1.25rem 1.1rem;
-  color: #fff;
-}
-.gallery-caption .g-name {
-  font-family: var(--ff-head);
-  font-weight: 700;
-  font-size: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.2;
-}
-body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
-.gallery-caption .g-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.78rem;
-  color: var(--cyan);
-  margin-top: 0.3rem;
-  font-family: var(--ff-head);
-  letter-spacing: 0.04em;
-}
-@media (min-width: 640px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 900px) {
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
-    grid-auto-flow: dense;
-  }
-  .gallery-card { min-height: 0; }
-  .gallery-card.g-wide { grid-column: span 2; }
-  .gallery-card.g-tall { grid-row: span 2; }
-}
 </style>
 </head>
 <body>
 
 <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
 <nav id="nav">
-  <div class="nav-logo"><img src="img/logo.jpeg" alt="Trud Vau"></div>
+  <div class="nav-logo">Trud Vau<span>.</span></div>
   <ul class="nav-links">
     <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
     <li><a href="#how" data-lang-th="วิธีใช้งาน" data-lang-en="How It Works">วิธีใช้งาน</a></li>
     <li><a href="#routes" data-lang-th="เส้นทาง" data-lang-en="Routes">เส้นทาง</a></li>
-    <li><a href="#gallery" data-lang-th="สถานที่เที่ยว" data-lang-en="Destinations">สถานที่เที่ยว</a></li>
     <li><a href="#why" data-lang-th="เกี่ยวกับเรา" data-lang-en="About">เกี่ยวกับเรา</a></li>
     <li><a href="#cta" data-lang-th="ติดต่อ" data-lang-en="Contact">ติดต่อ</a></li>
   </ul>
@@ -1412,83 +1322,6 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
   </div>
 </section>
 
-<!-- ═══ GALLERY / DESTINATIONS ════════════════════════ -->
-<section id="gallery" class="section">
-  <div class="section-inner">
-    <div class="gallery-header reveal">
-      <p class="label" data-lang-th="จุดหมายปลายทางยอดนิยม" data-lang-en="Popular Destinations">จุดหมายปลายทางยอดนิยม</p>
-      <h2 class="heading-lg" data-lang-th="พาคุณเที่ยวทั่วเกาะสมุย" data-lang-en="Explore the Best of Koh Samui">พาคุณเที่ยวทั่วเกาะสมุย</h2>
-      <p class="gallery-sub" data-lang-th="เรารับส่งคุณไปยังสถานที่ท่องเที่ยวชื่อดังทุกแห่งบนเกาะ สะดวก ปลอดภัย ตรงเวลา" data-lang-en="We take you to every iconic landmark on the island — comfortable, safe, and on time.">เรารับส่งคุณไปยังสถานที่ท่องเที่ยวชื่อดังทุกแห่งบนเกาะ สะดวก ปลอดภัย ตรงเวลา</p>
-    </div>
-
-    <div class="gallery-grid stagger">
-      <figure class="gallery-card g-wide reveal" style="--i:0">
-        <img src="img/image-863344813481421.jpeg" alt="Hin Ta Hin Yai" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="หินตา หินยาย" data-lang-en="Hin Ta Hin Yai Rocks">หินตา หินยาย</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="หาดละไม" data-lang-en="Lamai Beach">หาดละไม</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card g-tall reveal" style="--i:1">
-        <img src="img/image-1063231733034785.jpeg" alt="Red Temple" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="วัดราชธรรมาราม (วัดแดง)" data-lang-en="Red Temple">วัดราชธรรมาราม (วัดแดง)</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="ละไม" data-lang-en="Wat Ratchathammaram">ละไม</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card reveal" style="--i:2">
-        <img src="img/image-1007526132027442.jpeg" alt="Na Muang Waterfall" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="น้ำตกหน้าเมือง" data-lang-en="Na Muang Waterfall">น้ำตกหน้าเมือง</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="กลางเกาะ" data-lang-en="Central Samui">กลางเกาะ</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card reveal" style="--i:3">
-        <img src="img/image-1602616998101228.jpeg" alt="Wat Khunaram" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="วัดคุณาราม" data-lang-en="Wat Khunaram">วัดคุณาราม</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="ใต้เกาะ" data-lang-en="Mummified Monk">ใต้เกาะ</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card g-wide reveal" style="--i:4">
-        <img src="img/image-1504643304691663.jpeg" alt="Laem Sor Pagoda" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="เจดีย์แหลมสอ" data-lang-en="Laem Sor Pagoda">เจดีย์แหลมสอ</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="แหลมสอ" data-lang-en="Golden Pagoda">แหลมสอ</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card g-tall reveal" style="--i:5">
-        <img src="img/image-1708844573441229.jpeg" alt="Samui Viewpoint" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="จุดชมวิวเกาะสมุย" data-lang-en="Island Viewpoint">จุดชมวิวเกาะสมุย</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="บนเขา" data-lang-en="Hilltop">บนเขา</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card g-tall reveal" style="--i:6">
-        <img src="img/image-1795241594773116.jpeg" alt="Overlap Stone" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="หินซ้อน" data-lang-en="Overlap Stone">หินซ้อน</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="จุดชมวิว" data-lang-en="Viewpoint">จุดชมวิว</span></span>
-        </figcaption>
-      </figure>
-
-      <figure class="gallery-card g-wide reveal" style="--i:7">
-        <img src="img/image-1692362958575207.jpeg" alt="Secret Buddha Garden" loading="lazy">
-        <figcaption class="gallery-caption">
-          <div class="g-name" data-lang-th="สวนลับพระพุทธรูป" data-lang-en="Secret Buddha Garden">สวนลับพระพุทธรูป</div>
-          <span class="g-tag"><i data-lucide="map-pin" width="13" height="13"></i><span data-lang-th="กลางเขา" data-lang-en="Magic Garden">กลางเขา</span></span>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
 <!-- ═══ WHY US ═════════════════════════════════════ -->
 <section id="why">
   <div class="why-grid">
@@ -1608,28 +1441,24 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
     <h2 class="heading-lg reveal" data-lang-th="จองบริการรถตู้ของเรา" data-lang-en="Book Your Transfer Today">จองบริการรถตู้ของเรา</h2>
     <p class="cta-sub reveal" data-lang-th="ติดต่อเราตอนนี้เพื่อรับราคาและยืนยันที่นั่ง เราพร้อมให้บริการตลอด 24 ชั่วโมง" data-lang-en="Reach out now to get a quote and lock in your booking. We're available around the clock to make your Samui journey seamless.">ติดต่อเราตอนนี้เพื่อรับราคาและยืนยันที่นั่ง เราพร้อมให้บริการตลอด 24 ชั่วโมง</p>
     <div class="cta-actions reveal">
-      <a href="https://line.me/ti/p/m3AdfCj3-r" target="_blank" rel="noopener" class="btn-primary">
+      <a href="https://line.me" class="btn-primary">
         <i data-lucide="message-circle" width="18" height="18"></i>
         <span data-lang-th="ติดต่อผ่าน LINE" data-lang-en="Contact via LINE">ติดต่อผ่าน LINE</span>
       </a>
-      <a href="https://wa.me/66855719539" target="_blank" rel="noopener" class="btn-ghost">
+      <a href="https://wa.me" class="btn-ghost">
         <i data-lucide="phone" width="18" height="18"></i>
         <span data-lang-th="WhatsApp" data-lang-en="WhatsApp">WhatsApp</span>
       </a>
     </div>
     <div class="cta-contact reveal">
-      <a class="cta-contact-item" href="tel:+66855719539">
+      <div class="cta-contact-item">
         <i data-lucide="phone" width="16" height="16"></i>
-        <span>085 571 9539</span>
-      </a>
-      <a class="cta-contact-item" href="https://wa.me/66855719539" target="_blank" rel="noopener">
-        <i data-lucide="message-circle" width="16" height="16"></i>
-        <span>WhatsApp</span>
-      </a>
-      <a class="cta-contact-item" href="https://line.me/ti/p/m3AdfCj3-r" target="_blank" rel="noopener">
-        <i data-lucide="message-circle" width="16" height="16"></i>
-        <span>LINE</span>
-      </a>
+        <span>+66 77 XXX XXXX</span>
+      </div>
+      <div class="cta-contact-item">
+        <i data-lucide="mail" width="16" height="16"></i>
+        <span>info@trudvausamui.com</span>
+      </div>
       <div class="cta-contact-item">
         <i data-lucide="clock" width="16" height="16"></i>
         <span data-lang-th="เปิดบริการ 24/7" data-lang-en="Open 24/7">เปิดบริการ 24/7</span>
@@ -1643,7 +1472,7 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo"><img src="img/logo.jpeg" alt="Trud Vau"></div>
+        <div class="nav-logo">Trud Vau<span>.</span></div>
         <p class="footer-desc" data-lang-th="บริการรถรับส่งส่วนตัวบนเกาะสมุย ปลอดภัย ตรงเวลา ราคาโปร่งใส" data-lang-en="Private van transfer service on Koh Samui. Safe, on-time, transparent pricing.">บริการรถรับส่งส่วนตัวบนเกาะสมุย ปลอดภัย ตรงเวลา ราคาโปร่งใส</p>
       </div>
       <div class="footer-links-group">
@@ -1668,9 +1497,9 @@ body[lang="th"] .gallery-caption .g-name { letter-spacing: 0; }
     <div class="footer-bottom">
       <p class="footer-copy" data-lang-th="© 2025 Trud Vau Samui Service. สงวนลิขสิทธิ์" data-lang-en="© 2025 Trud Vau Samui Service. All rights reserved.">© 2025 Trud Vau Samui Service. สงวนลิขสิทธิ์</p>
       <div class="footer-socials">
-        <a class="footer-social" href="https://line.me/ti/p/m3AdfCj3-r" target="_blank" rel="noopener" aria-label="LINE"><i data-lucide="message-circle" width="16" height="16"></i></a>
-        <a class="footer-social" href="https://wa.me/66855719539" target="_blank" rel="noopener" aria-label="WhatsApp"><i data-lucide="phone" width="16" height="16"></i></a>
-        <a class="footer-social" href="tel:+66855719539" aria-label="Phone"><i data-lucide="phone-call" width="16" height="16"></i></a>
+        <a class="footer-social" href="#" aria-label="LINE"><i data-lucide="message-circle" width="16" height="16"></i></a>
+        <a class="footer-social" href="#" aria-label="Facebook"><i data-lucide="facebook" width="16" height="16"></i></a>
+        <a class="footer-social" href="#" aria-label="Instagram"><i data-lucide="instagram" width="16" height="16"></i></a>
       </div>
     </div>
   </div>
