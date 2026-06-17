@@ -115,6 +115,12 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
   width: auto;
   border-radius: 8px;
 }
+/* Navbar logo — plain transparent logo (no box) */
+#nav .nav-logo img {
+  height: 64px;
+  width: auto;
+  border-radius: 0;
+}
 .nav-links {
   display: none;
   gap: 2rem;
@@ -237,8 +243,8 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
 .overlay.open { display: block; }
 
 @media (min-width: 768px) {
-  #nav { padding: 0.9rem 3rem; }
-  #nav.scrolled { padding: 0.6rem 3rem; }
+  #nav { padding: 0.7rem 3rem; }
+  #nav.scrolled { padding: 0.5rem 3rem; }
   .nav-links { display: flex; }
   .nav-cta { display: block; }
   .hamburger { display: none; }
@@ -477,7 +483,6 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
   padding-top: 0.1em;
   transition: color 0.3s;
 }
-.service-body {}
 .service-icon {
   display: flex;
   align-items: center;
@@ -699,7 +704,6 @@ body[lang="th"] .heading-md { letter-spacing: 0; }
   flex-direction: column;
   gap: 3rem;
 }
-.why-text {}
 .why-text .label { color: var(--cyan); margin-bottom: 0.75rem; }
 .why-text .heading-lg { color: var(--white); margin-bottom: 1.5rem; }
 .why-body {
@@ -947,7 +951,7 @@ footer {
   margin-bottom: 1.5rem;
 }
 .footer-brand .nav-logo { font-size: 1.4rem; }
-.footer-brand .nav-logo img { height: 120px; border-radius: 12px; }
+.footer-brand .nav-logo img { height: 110px; width: auto; border-radius: 0; }
 .footer-desc {
   font-size: 0.85rem;
   color: rgba(255,255,255,0.4);
@@ -955,7 +959,6 @@ footer {
   max-width: 260px;
   margin-top: 0.75rem;
 }
-.footer-links-group { }
 .footer-links-title {
   font-family: var(--ff-head);
   font-size: 0.7rem;
@@ -1270,7 +1273,7 @@ body[lang="th"] .fleet-name { letter-spacing: 0; }
 
 <!-- ═══ NAVBAR ═══════════════════════════════════════ -->
 <nav id="nav">
-  <div class="nav-logo"><img src="img/logo.jpeg" alt="Trud Vau"></div>
+  <div class="nav-logo"><img src="img/logo_nobg.png" alt="Trud Vau"></div>
   <ul class="nav-links">
     <li><a href="#services" data-lang-th="บริการ" data-lang-en="Services">บริการ</a></li>
     <li><a href="#fleet" data-lang-th="รถของเรา" data-lang-en="Our Fleet">รถของเรา</a></li>
@@ -1435,7 +1438,7 @@ body[lang="th"] .fleet-name { letter-spacing: 0; }
 <!-- ═══ LIGHTBOX ══════════════════════════════════════ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
   <span class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</span>
-  <img id="lightboxImg" src="" alt="">
+  <img id="lightboxImg" alt="">
 </div>
 
 <!-- ═══ HOW IT WORKS ════════════════════════════════ -->
@@ -1840,7 +1843,7 @@ body[lang="th"] .fleet-name { letter-spacing: 0; }
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <div class="nav-logo"><img src="img/logo.jpeg" alt="Trud Vau"></div>
+        <div class="nav-logo"><img src="img/logo_nobg.png" alt="Trud Vau"></div>
         <p class="footer-desc" data-lang-th="บริการรถรับส่งส่วนตัวบนเกาะสมุย ปลอดภัย ตรงเวลา ราคาโปร่งใส" data-lang-en="Private van transfer service on Koh Samui. Safe, on-time, transparent pricing.">บริการรถรับส่งส่วนตัวบนเกาะสมุย ปลอดภัย ตรงเวลา ราคาโปร่งใส</p>
       </div>
       <div class="footer-links-group">
