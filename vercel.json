@@ -1,5 +1,0 @@
-{
-  "redirects": [
-    { "source": "/v1.html", "destination": "/", "permanent": true }
-  ]
-}
